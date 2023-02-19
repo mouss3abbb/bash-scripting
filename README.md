@@ -1,6 +1,12 @@
 # Bash Scripting
 Basic tutorial about bash scripting
 
+1. [Introduction](#introduction)
+2. [Basic Syntax](#basic-syntax)
+3. [Variables](#variables)
+4. [Arithemetic Operations](#arithemetic-operations)
+5. [If Conditions](#if-conditions)
+
 ## Introduction
 
 Shell is a command language interpreter that is available on many operating systems.
@@ -139,7 +145,7 @@ read -p "Please enter your name: " NAME
 printf "Hello Mr. %s\n" "$NAME"
 ```
 
-## Arithmetic Operations
+## Arithemetic Operations
 
 You can't do many arithemetic operations directly.
 
@@ -179,3 +185,98 @@ Basic operators
 `++` - Post/Pre increment
 
 `--` - Post/Pre decrement
+
+## If Conditions
+
+Basic syntax for if statement is
+
+```
+if (( *comparison condition* ))
+then 
+# Your code
+fi
+```
+
+And you can put `then` on the same line and separate it with `;`. You can type multiple commands in the same line and separate them by `;` 
+
+
+```
+if (( *comparison condition* )); then 
+# Your code
+fi
+```
+
+Some basic relational operators are
+
+`==` - is equal
+
+`>` - is greater than
+
+`<` - is less than 
+
+`!=` - is not equal
+
+`>=` - is greater than or equal
+
+`<=` - is less than or equal
+
+For other conditions (non comparison), you should use `[ *condition* ]` instead of `(( condition ))`. You should add space before and after the condition
+
+For example to test if a file named new_script exists
+
+```
+if [ -e new_script ]; then 
+echo "Exists"
+fi
+```
+To test if it's a file you can use the `-f` flag and if it's a directory use `-d`.
+
+You can use else if statement as follows 
+
+```
+if [ -f script.sh ]; then
+echo "File Exists"
+elif [ -d directory/ ]; then
+echo "Directory Exists"
+fi
+```
+
+You can also add an else statement without a condition that will be executed as a last option.
+
+Furthermore, you can combine multiple conditions together
+
+Some important operators
+
+`-a` - AND for `[]` operator
+
+`-o` - OR for `[]` operator
+
+`&&` - AND for `(())` operator
+
+`||` - OR for `(())` operator
+
+Consider the following code
+
+```
+if [ -f script.sh -o -d directory/ ]; then
+ echo "Exists"
+fi
+```
+
+This code prints *Exists* if there's a file called script.sh or there's a directory called *directory*.
+
+Consider the following code to make a program that creates a new file with the `touch` command and if that file already exists we create a new file with `1` after the name
+
+```
+#!/bin/bash
+
+read -p "Enter name of the file " name 
+
+if [ -f $name ]; then
+	printf "The file already exists\n"
+	printf "File %s1 is created instead\n" "$name"
+else
+	touch $name
+	printf "File %s created\n" "$name"
+fi
+```
