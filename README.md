@@ -66,7 +66,14 @@ By default all variables are strings, but you can declare integers by adding the
 declare -i INT_VAR=5
 ```
 
-## I/O
+You can specifiy the variable as *readonly* (similar to constant) to prevent someone from overwriting it
+
+```
+declare -r NAME_CONST="Linux"
+```
+
+## Basic I/O
+
 To print anything to the console screen you can use the `echo` command 
 
 ```
@@ -84,3 +91,48 @@ echo '$VAR' # Will print $VAR not the value in the variable
 There are some variables predefined and found in any Bash script. These variables are called environment variables
 
 Some of them are `$HOME`, `$SHELL` and `$PATH`. You can use these variables anywhere from a shell
+
+For more advanced printing you can use the `printf` command (similar to C).
+
+You can add some format specifiers and they will be replaced by the corresponding variables
+
+```
+#!/bin/bash
+
+declare -i age=21
+declare name="Abdullah"
+
+printf "%s is %d years old\n" "$name" "$age"
+```
+
+`%s` - denotes a string
+`%d`, `%i` - denotes integer
+`%f` - denotes float
+`%e` - denotes scientific notation
+
+You can also printf specific precision with floats
+
+`printf "%.6f" 2.15214`
+
+To read an input value from the user you can use the `read` command.
+
+```
+declare NAME
+
+printf "Please enter your name: "
+
+read NAME
+
+printf "Hello Mr. %s\n" "$NAME"
+```
+
+You can even delete the `declare` statement as the variable will be automatically created with the `read` command.
+
+Furthermore, you can add a flag `-p` for prompting the user with a message. That means we can delete the first printing statement as well
+
+```
+read -p "Please enter your name: " NAME
+
+printf "Hello Mr. %s\n" "$NAME"
+```
+
