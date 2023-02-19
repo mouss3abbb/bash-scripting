@@ -106,8 +106,11 @@ printf "%s is %d years old\n" "$name" "$age"
 ```
 
 `%s` - denotes a string
+
 `%d`, `%i` - denotes integer
+
 `%f` - denotes float
+
 `%e` - denotes scientific notation
 
 You can also printf specific precision with floats
