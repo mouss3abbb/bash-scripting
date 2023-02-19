@@ -139,3 +139,43 @@ read -p "Please enter your name: " NAME
 printf "Hello Mr. %s\n" "$NAME"
 ```
 
+## Arithmetic Operations
+
+You can't do many arithemetic operations directly.
+
+Try these operations `VAR++`, `VAR-=4`. They won't work
+
+To make arithemetic operations you can use the `let` command
+
+```
+let VAR++
+let VAR-=2
+let VAR=5+7
+let VAR=VAR-1
+```
+
+Another way is to put your operation in ``(())``
+
+
+```
+((VAR++))
+((VAR-=2))
+((VAR=5+7))
+((VAR=VAR-1))
+```
+
+Basic operators
+
+`+` - Addition
+
+`-` - Subtraction
+
+`*` - Multiplication
+
+`/` - Integer division
+
+`%` - Remainder
+
+`++` - Post/Pre increment
+
+`--` - Post/Pre decrement
